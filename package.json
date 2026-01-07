@@ -26,7 +26,7 @@
 		"format": "prettier . --write --log-level=warn",
 		"format:check": "prettier . --check --log-level=warn",
 		"prepare": "husky",
-		"pre-commit": "pnpm install && git add pnpm-lock.yaml && pnpm lint-staged --allow-empty && tsc --noEmit"
+		"pre-commit": "npm install && git add package-lock.json && npx lint-staged --allow-empty && tsc --noEmit"
 	},
 	"files": [
 		"dist"
@@ -59,7 +59,7 @@
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
 	},
-	"pnpm": {
+	"npm": {
 		"overrides": {
 			"change-case": "4.1.2"
 		}

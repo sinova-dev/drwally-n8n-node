@@ -10,7 +10,6 @@ DrWally API is service that allows users automate whatsapp messaging for busines
 [Operations](#operations)  
 [Credentials](#credentials)
 [Compatibility](#compatibility)  
-[Usage](#usage)
 [Resources](#resources)
 
 ## Installation
@@ -38,17 +37,7 @@ For sending messages using DrWally node, you need to have account on [DrWally we
 
 Minimum n8n version - 2.1.5
 
-## Usage
-
-_This is an optional section. Use it to help users with any difficult or confusing aspects of the node._
-
-_By the time users are looking for community nodes, they probably already know n8n basics. But if you expect new users, you can link to the [Try it out](https://docs.n8n.io/try-it-out/) documentation to help them get started._
-
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-- _Link to app/service documentation._
-
-## Version history
-
-_This is another optional section. If your node has multiple versions, include a short description of available versions and what changed, as well as any compatibility impact._
+- [DrWally API](https://api.drwallyai.com/api#/)

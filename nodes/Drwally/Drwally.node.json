@@ -6,12 +6,12 @@
 	"resources": {
 		"credentialDocumentation": [
 			{
-				"url": "https://github.com/org/repo?tab=readme-ov-file#credentials"
+				"url": "https://github.com/sinova-dev/drwally-n8n-node?tab=readme-ov-file#credentials"
 			}
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://github.com/org/repo?tab=readme-ov-file"
+				"url": "https://api.drwallyai.com/api#/"
 			}
 		]
 	}

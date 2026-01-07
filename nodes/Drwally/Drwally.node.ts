@@ -96,6 +96,7 @@ export class Drwally implements INodeType {
 				default: '',
 				placeholder: 'Enter recipient phone number / group name',
 				description: 'The recipient phone number',
+				required: true,
 				displayOptions: {
 					show: {
 						resource: ['message'],
@@ -110,6 +111,7 @@ export class Drwally implements INodeType {
 				default: '',
 				placeholder: 'Enter message',
 				description: 'The message to send',
+				required: true,
 				displayOptions: {
 					show: {
 						resource: ['message'],

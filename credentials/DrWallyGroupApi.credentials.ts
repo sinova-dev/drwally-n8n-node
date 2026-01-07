@@ -18,6 +18,7 @@ export class DrWallyGroupApi implements ICredentialType {
 			name: 'apiLink',
 			type: 'string',
 			default: '',
+			required: true,
 		},
 		{
 			displayName: 'Secret key',
@@ -25,6 +26,7 @@ export class DrWallyGroupApi implements ICredentialType {
 			type: 'string',
 			default: '',
 			typeOptions: { password: true },
+			required: true,
 		},
 	];
 

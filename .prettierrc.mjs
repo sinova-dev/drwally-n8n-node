@@ -1,4 +1,6 @@
-module.exports = {
+import { resolveConfig } from '@sinova-development/repos-configs/prettier-config';
+
+export default resolveConfig({
 	/**
 	 * https://prettier.io/docs/en/options.html#semicolons
 	 */
@@ -48,4 +50,4 @@ module.exports = {
 	 * https://prettier.io/docs/en/options.html#print-width
 	 */
 	printWidth: 100,
-};
+});

@@ -1,5 +1,5 @@
 {
-	"name": "drwally-n8n-node",
+	"name": "@drwally/n8n-nodes-integration",
 	"version": "0.1.0",
 	"description": "Integration node for Drwally",
 	"license": "MIT",
@@ -8,8 +8,8 @@
 		"n8n-community-node-package"
 	],
 	"author": {
-		"name": "",
-		"email": ""
+		"name": "Roman Pavlenko",
+		"email": "rpavlenko.sinova@gmail.com"
 	},
 	"repository": {
 		"type": "git",
@@ -22,7 +22,11 @@
 		"lint": "n8n-node lint",
 		"lint:fix": "n8n-node lint --fix",
 		"release": "n8n-node release",
-		"prepublishOnly": "n8n-node prerelease"
+		"prepublishOnly": "n8n-node prerelease",
+		"format": "prettier . --write --log-level=warn",
+		"format:check": "prettier . --check --log-level=warn",
+		"prepare": "husky",
+		"pre-commit": "pnpm install && git add pnpm-lock.yaml && pnpm lint-staged --allow-empty && tsc --noEmit"
 	},
 	"files": [
 		"dist"
@@ -31,22 +35,33 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
-			"dist/credentials/GithubIssuesApi.credentials.js",
-			"dist/credentials/GithubIssuesOAuth2Api.credentials.js"
+			"dist/credentials/DrWallyPrivateApi.credentials.js",
+			"dist/credentials/DrWallyGroupApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/GithubIssues/GithubIssues.node.js",
-			"dist/nodes/Example/Example.node.js"
+			"dist/nodes/Drwally/Drwally.node.js"
 		]
 	},
 	"devDependencies": {
 		"@n8n/node-cli": "*",
+		"@sinova-development/repos-configs": "^0.0.2",
 		"eslint": "9.32.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
 		"prettier": "3.6.2",
+		"prettier-plugin-tailwindcss": "^0.7.2",
 		"release-it": "^19.0.4",
 		"typescript": "5.9.2"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
+	},
+	"lint-staged": {
+		"**/*": "prettier --write --ignore-unknown"
+	},
+	"pnpm": {
+		"overrides": {
+			"change-case": "4.1.2"
+		}
 	}
 }

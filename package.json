@@ -15,6 +15,9 @@
 		"type": "git",
 		"url": "https://github.com/sinova-dev/drwally-n8n-node.git"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"build": "n8n-node build",
 		"build:watch": "tsc --watch",

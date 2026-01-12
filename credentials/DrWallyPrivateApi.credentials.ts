@@ -1,7 +1,8 @@
 import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
+import { CREDENTIAL_DRWALLY_PRIVATE_API } from '../constants/misc';
 
 export class DrWallyPrivateApi implements ICredentialType {
-	name = 'drwallyPrivateApi';
+	name = CREDENTIAL_DRWALLY_PRIVATE_API;
 
 	displayName = 'DrWally Private API';
 

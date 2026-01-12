@@ -1,7 +1,8 @@
 import { Icon, ICredentialTestRequest, ICredentialType, INodeProperties } from 'n8n-workflow';
+import { CREDENTIAL_DRWALLY_GROUP_API } from '../constants/misc';
 
 export class DrWallyGroupApi implements ICredentialType {
-	name = 'drwallyGroupApi';
+	name = CREDENTIAL_DRWALLY_GROUP_API;
 
 	displayName = 'DrWally Group API';
 

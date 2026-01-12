@@ -1,5 +1,9 @@
 import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
-import { CREDENTIAL_DRWALLY_PRIVATE_API, API_DOCUMENTATION_URL } from '../constants/misc';
+import {
+	CREDENTIAL_DRWALLY_PRIVATE_API,
+	API_DOCUMENTATION_URL,
+	API_HEALTH_PATH,
+} from '../constants/misc';
 
 export class DrWallyPrivateApi implements ICredentialType {
 	name = CREDENTIAL_DRWALLY_PRIVATE_API;
@@ -33,7 +37,7 @@ export class DrWallyPrivateApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials?.apiLink}}/health',
+			baseURL: '={{$credentials?.apiLink}}' + API_HEALTH_PATH,
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

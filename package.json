@@ -8,8 +8,8 @@
 		"n8n-community-node-package"
 	],
 	"author": {
-		"name": "Roman Pavlenko",
-		"email": "rpavlenko.sinova@gmail.com"
+		"name": "DrWally",
+		"email": "developers@2010in.com"
 	},
 	"repository": {
 		"type": "git",
@@ -51,9 +51,7 @@
 		"prettier": "3.6.2",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"release-it": "^19.0.4",
-		"typescript": "5.9.2"
-	},
-	"peerDependencies": {
+		"typescript": "5.9.2",
 		"n8n-workflow": "*"
 	},
 	"lint-staged": {

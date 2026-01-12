@@ -10,7 +10,7 @@ export class DrWallyGroupApi implements ICredentialType {
 		dark: 'file:../icons/Drwally.dark.svg',
 	};
 
-	documentationUrl = 'https://api.drwallyai.com/api#/Webhooks';
+	documentationUrl = 'https://api.drwallyai.com/api';
 
 	properties: INodeProperties[] = [
 		{

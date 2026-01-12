@@ -18,7 +18,7 @@ export const PARAM_SECRET_KEY = 'secretKey';
 export const RESPONSE_STATUS_QUEUED = 'queued';
 
 export const API_HEALTH_PATH = '/health';
-export const API_DOCUMENTATION_URL = 'https://api.drwallyai.com/api#/Webhooks';
+export const API_DOCUMENTATION_URL = 'https://api.drwallyai.com/api';
 
 export const ERROR_FAILED_GET_PRIVATE_CREDENTIALS = 'Failed to get private credentials: ';
 export const ERROR_FAILED_GET_GROUP_CREDENTIALS = 'Failed to get group credentials: ';

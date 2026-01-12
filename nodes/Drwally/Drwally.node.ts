@@ -23,8 +23,8 @@ import {
 	ERROR_API_LINK_REQUIRED,
 	ERROR_SECRET_KEY_REQUIRED,
 	ERROR_FAILED_SEND_MESSAGE,
-	CREDENTIAL_DRWALLY_PRIVATE_API,
-	CREDENTIAL_DRWALLY_GROUP_API,
+	CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API,
+	CREDENTIAL_DRWALLY_GROUP_MESSAGE_API,
 	SEND_PRIVATE,
 	SEND_GROUP,
 } from '../../constants/misc';
@@ -45,7 +45,7 @@ export class Drwally implements INodeType {
 		},
 		credentials: [
 			{
-				name: CREDENTIAL_DRWALLY_PRIVATE_API,
+				name: CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API,
 				displayName: 'Private Message Credentials',
 				required: true,
 				displayOptions: {
@@ -56,7 +56,7 @@ export class Drwally implements INodeType {
 				},
 			},
 			{
-				name: CREDENTIAL_DRWALLY_GROUP_API,
+				name: CREDENTIAL_DRWALLY_GROUP_MESSAGE_API,
 				displayName: 'Group Message Credentials',
 				required: true,
 				displayOptions: {
@@ -157,7 +157,7 @@ export class Drwally implements INodeType {
 				switch (operation) {
 					case OPERATION_SEND_PRIVATE:
 						try {
-							credentials = await this.getCredentials(CREDENTIAL_DRWALLY_PRIVATE_API);
+							credentials = await this.getCredentials(CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API);
 						} catch (error) {
 							throw new NodeOperationError(
 								this.getNode(),
@@ -171,7 +171,7 @@ export class Drwally implements INodeType {
 
 					case OPERATION_SEND_GROUP:
 						try {
-							credentials = await this.getCredentials(CREDENTIAL_DRWALLY_GROUP_API);
+							credentials = await this.getCredentials(CREDENTIAL_DRWALLY_GROUP_MESSAGE_API);
 						} catch (error) {
 							throw new NodeOperationError(
 								this.getNode(),
@@ -203,19 +203,19 @@ export class Drwally implements INodeType {
 					});
 				}
 
-				if (credentials.webhookUrl === '') {
+				if (credentials[PARAM_WEBHOOK_URL] === '') {
 					throw new NodeOperationError(this.getNode(), new Error(ERROR_API_LINK_REQUIRED), {
 						itemIndex,
 					});
 				}
-				if (credentials.secretKey === '') {
+				if (credentials[PARAM_SECRET_KEY] === '') {
 					throw new NodeOperationError(this.getNode(), new Error(ERROR_SECRET_KEY_REQUIRED), {
 						itemIndex,
 					});
 				}
 
-				const webhookUrl = credentials.webhookUrl;
-				const secretKey = credentials.secretKey;
+				const webhookUrl = credentials[PARAM_WEBHOOK_URL];
+				const secretKey = credentials[PARAM_SECRET_KEY];
 
 				const options: IHttpRequestOptions = {
 					method: 'POST',

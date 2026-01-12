@@ -3,8 +3,8 @@ export const RESOURCE_MESSAGE = 'message';
 export const OPERATION_SEND_PRIVATE = 'sendPrivate';
 export const OPERATION_SEND_GROUP = 'sendGroup';
 
-export const CREDENTIAL_DRWALLY_PRIVATE_API = 'drwallyPrivateApi';
-export const CREDENTIAL_DRWALLY_GROUP_API = 'drwallyGroupApi';
+export const CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API = 'drwallyPrivateMessageApi';
+export const CREDENTIAL_DRWALLY_GROUP_MESSAGE_API = 'drwallyGroupMessageApi';
 
 export const SEND_PRIVATE = 'sendPrivate';
 export const SEND_GROUP = 'sendGroup';

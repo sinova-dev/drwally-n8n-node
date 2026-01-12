@@ -5,10 +5,10 @@ import {
 	API_HEALTH_PATH,
 } from '../constants/misc';
 
-export class DrWallyGroupApi implements ICredentialType {
+export class DrWallyGroupMessageApi implements ICredentialType {
 	name = CREDENTIAL_DRWALLY_GROUP_MESSAGE_API;
 
-	displayName = 'DrWally Group API';
+	displayName = 'DrWally Group Message API';
 
 	icon: Icon = {
 		light: 'file:../icons/Drwally.light.svg',

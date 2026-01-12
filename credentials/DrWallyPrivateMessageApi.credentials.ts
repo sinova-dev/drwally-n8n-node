@@ -5,7 +5,7 @@ import {
 	API_HEALTH_PATH,
 } from '../constants/misc';
 
-export class DrWallyPrivateApi implements ICredentialType {
+export class DrWallyPrivateMessageApi implements ICredentialType {
 	name = CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API;
 
 	displayName = 'DrWally Private API';

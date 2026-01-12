@@ -19,8 +19,8 @@ export class DrWallyGroupApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'API Link',
-			name: 'apiLink',
+			displayName: 'Webhook URL',
+			name: 'webhookUrl',
 			type: 'string',
 			default: '',
 			required: true,
@@ -37,7 +37,7 @@ export class DrWallyGroupApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials?.apiLink}}' + API_HEALTH_PATH,
+			baseURL: '={{$credentials?.webhookUrl}}' + API_HEALTH_PATH,
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

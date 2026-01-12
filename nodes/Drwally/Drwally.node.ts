@@ -11,7 +11,7 @@ import {
 	PARAM_OPERATION,
 	PARAM_RECIPIENT,
 	PARAM_MESSAGE,
-	PARAM_API_LINK,
+	PARAM_WEBHOOK_URL,
 	PARAM_SECRET_KEY,
 	RESPONSE_STATUS_QUEUED,
 	OPERATION_SEND_PRIVATE,
@@ -195,7 +195,7 @@ export class Drwally implements INodeType {
 
 				if (
 					!credentials ||
-					!(PARAM_API_LINK in credentials) ||
+					!(PARAM_WEBHOOK_URL in credentials) ||
 					!(PARAM_SECRET_KEY in credentials)
 				) {
 					throw new NodeOperationError(this.getNode(), new Error(ERROR_NO_CREDENTIALS_FOUND), {
@@ -203,7 +203,7 @@ export class Drwally implements INodeType {
 					});
 				}
 
-				if (credentials.apiLink === '') {
+				if (credentials.webhookUrl === '') {
 					throw new NodeOperationError(this.getNode(), new Error(ERROR_API_LINK_REQUIRED), {
 						itemIndex,
 					});
@@ -214,12 +214,12 @@ export class Drwally implements INodeType {
 					});
 				}
 
-				const apiLink = credentials.apiLink;
+				const webhookUrl = credentials.webhookUrl;
 				const secretKey = credentials.secretKey;
 
 				const options: IHttpRequestOptions = {
 					method: 'POST',
-					url: `${apiLink}`,
+					url: `${webhookUrl}`,
 					headers: {
 						'Content-Type': 'application/json',
 						'X-API-KEY': secretKey as string,

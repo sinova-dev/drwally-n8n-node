@@ -12,7 +12,7 @@ export const SEND_GROUP = 'sendGroup';
 export const PARAM_OPERATION = 'operation';
 export const PARAM_RECIPIENT = 'recipient';
 export const PARAM_MESSAGE = 'message';
-export const PARAM_API_LINK = 'apiLink';
+export const PARAM_WEBHOOK_URL = 'webhookUrl';
 export const PARAM_SECRET_KEY = 'secretKey';
 
 export const RESPONSE_STATUS_QUEUED = 'queued';

@@ -40,4 +40,4 @@ Minimum n8n version - 2.1.5
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
-- [DrWally API](https://api.drwallyai.com/api)
+- [DrWally API](https://api.drwallyai.com/api-public)

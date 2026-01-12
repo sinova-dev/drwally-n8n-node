@@ -1,5 +1,5 @@
 import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
-import { CREDENTIAL_DRWALLY_PRIVATE_API } from '../constants/misc';
+import { CREDENTIAL_DRWALLY_PRIVATE_API, API_DOCUMENTATION_URL } from '../constants/misc';
 
 export class DrWallyPrivateApi implements ICredentialType {
 	name = CREDENTIAL_DRWALLY_PRIVATE_API;
@@ -11,7 +11,7 @@ export class DrWallyPrivateApi implements ICredentialType {
 		dark: 'file:../icons/Drwally.dark.svg',
 	};
 
-	documentationUrl = 'https://api.drwallyai.com/api';
+	documentationUrl = API_DOCUMENTATION_URL;
 
 	properties: INodeProperties[] = [
 		{

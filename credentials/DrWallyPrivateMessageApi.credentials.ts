@@ -1,7 +1,12 @@
 import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
+import {
+	CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API,
+	API_DOCUMENTATION_URL,
+	API_HEALTH_PATH,
+} from '../constants/misc';
 
-export class DrWallyPrivateApi implements ICredentialType {
-	name = 'drwallyPrivateApi';
+export class DrWallyPrivateMessageApi implements ICredentialType {
+	name = CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API;
 
 	displayName = 'DrWally Private API';
 
@@ -10,12 +15,12 @@ export class DrWallyPrivateApi implements ICredentialType {
 		dark: 'file:../icons/Drwally.dark.svg',
 	};
 
-	documentationUrl = 'https://api.drwallyai.com/api#/Webhooks';
+	documentationUrl = API_DOCUMENTATION_URL;
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'API Link',
-			name: 'apiLink',
+			displayName: 'Webhook URL',
+			name: 'webhookUrl',
 			type: 'string',
 			default: '',
 			required: true,
@@ -32,7 +37,7 @@ export class DrWallyPrivateApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials?.apiLink}}/health',
+			baseURL: '={{$credentials?.webhookUrl}}' + API_HEALTH_PATH,
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',

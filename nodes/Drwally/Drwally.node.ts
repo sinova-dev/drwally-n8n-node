@@ -7,6 +7,27 @@ import type {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
+import {
+	PARAM_OPERATION,
+	PARAM_RECIPIENT,
+	PARAM_MESSAGE,
+	PARAM_WEBHOOK_URL,
+	PARAM_SECRET_KEY,
+	RESPONSE_STATUS_QUEUED,
+	OPERATION_SEND_PRIVATE,
+	OPERATION_SEND_GROUP,
+	ERROR_FAILED_GET_PRIVATE_CREDENTIALS,
+	ERROR_FAILED_GET_GROUP_CREDENTIALS,
+	ERROR_UNKNOWN_OPERATION,
+	ERROR_NO_CREDENTIALS_FOUND,
+	ERROR_API_LINK_REQUIRED,
+	ERROR_SECRET_KEY_REQUIRED,
+	ERROR_FAILED_SEND_MESSAGE,
+	CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API,
+	CREDENTIAL_DRWALLY_GROUP_MESSAGE_API,
+	SEND_PRIVATE,
+	SEND_GROUP,
+} from '../../constants/misc';
 
 export class Drwally implements INodeType {
 	description: INodeTypeDescription = {
@@ -24,24 +45,24 @@ export class Drwally implements INodeType {
 		},
 		credentials: [
 			{
-				name: 'drwallyPrivateApi',
+				name: CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API,
 				displayName: 'Private Message Credentials',
 				required: true,
 				displayOptions: {
 					show: {
 						resource: ['message'],
-						operation: ['sendPrivate'],
+						operation: [SEND_PRIVATE],
 					},
 				},
 			},
 			{
-				name: 'drwallyGroupApi',
+				name: CREDENTIAL_DRWALLY_GROUP_MESSAGE_API,
 				displayName: 'Group Message Credentials',
 				required: true,
 				displayOptions: {
 					show: {
 						resource: ['message'],
-						operation: ['sendGroup'],
+						operation: [SEND_GROUP],
 					},
 				},
 			},
@@ -100,7 +121,7 @@ export class Drwally implements INodeType {
 				displayOptions: {
 					show: {
 						resource: ['message'],
-						operation: ['sendPrivate', 'sendGroup'],
+						operation: [SEND_PRIVATE, SEND_GROUP],
 					},
 				},
 			},
@@ -115,7 +136,7 @@ export class Drwally implements INodeType {
 				displayOptions: {
 					show: {
 						resource: ['message'],
-						operation: ['sendPrivate', 'sendGroup'],
+						operation: [SEND_PRIVATE, SEND_GROUP],
 					},
 				},
 			},
@@ -128,68 +149,77 @@ export class Drwally implements INodeType {
 
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 			try {
-				const operation = this.getNodeParameter('operation', itemIndex) as string;
-				const recipient = this.getNodeParameter('recipient', itemIndex, '') as string;
-				const message = this.getNodeParameter('message', itemIndex, '') as string;
+				const operation = this.getNodeParameter(PARAM_OPERATION, itemIndex) as string;
+				const recipient = this.getNodeParameter(PARAM_RECIPIENT, itemIndex, '') as string;
+				const message = this.getNodeParameter(PARAM_MESSAGE, itemIndex, '') as string;
 				let credentials: ICredentialData;
 
-				if (operation === 'sendPrivate') {
-					try {
-						credentials = await this.getCredentials('drwallyPrivateApi');
-					} catch (error) {
+				switch (operation) {
+					case OPERATION_SEND_PRIVATE:
+						try {
+							credentials = await this.getCredentials(CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API);
+						} catch (error) {
+							throw new NodeOperationError(
+								this.getNode(),
+								new Error(ERROR_FAILED_GET_PRIVATE_CREDENTIALS + error),
+								{
+									itemIndex,
+								},
+							);
+						}
+						break;
+
+					case OPERATION_SEND_GROUP:
+						try {
+							credentials = await this.getCredentials(CREDENTIAL_DRWALLY_GROUP_MESSAGE_API);
+						} catch (error) {
+							throw new NodeOperationError(
+								this.getNode(),
+								new Error(ERROR_FAILED_GET_GROUP_CREDENTIALS + error),
+								{
+									itemIndex,
+								},
+							);
+						}
+						break;
+
+					default:
 						throw new NodeOperationError(
 							this.getNode(),
-							new Error('Failed to get private credentials: ' + error),
+							new Error(`${ERROR_UNKNOWN_OPERATION}${operation}`),
 							{
 								itemIndex,
 							},
 						);
-					}
-				} else if (operation === 'sendGroup') {
-					try {
-						credentials = await this.getCredentials('drwallyGroupApi');
-					} catch (error) {
-						throw new NodeOperationError(
-							this.getNode(),
-							new Error('Failed to get group credentials: ' + error),
-							{
-								itemIndex,
-							},
-						);
-					}
-				} else {
-					throw new NodeOperationError(
-						this.getNode(),
-						new Error(`Unknown operation: ${operation}`),
-						{
-							itemIndex,
-						},
-					);
 				}
 
-				if (!credentials || !('apiLink' in credentials) || !('secretKey' in credentials)) {
-					throw new NodeOperationError(this.getNode(), new Error('No credentials found'), {
+				if (
+					!credentials ||
+					!(PARAM_WEBHOOK_URL in credentials) ||
+					!(PARAM_SECRET_KEY in credentials)
+				) {
+					throw new NodeOperationError(this.getNode(), new Error(ERROR_NO_CREDENTIALS_FOUND), {
 						itemIndex,
 					});
 				}
 
-				if (credentials.apiLink === '') {
-					throw new NodeOperationError(this.getNode(), new Error('API Link is required'), {
+				if (credentials[PARAM_WEBHOOK_URL] === '') {
+					throw new NodeOperationError(this.getNode(), new Error(ERROR_API_LINK_REQUIRED), {
 						itemIndex,
 					});
 				}
-				if (credentials.secretKey === '') {
-					throw new NodeOperationError(this.getNode(), new Error('Secret Key is required'), {
+				if (credentials[PARAM_SECRET_KEY] === '') {
+					throw new NodeOperationError(this.getNode(), new Error(ERROR_SECRET_KEY_REQUIRED), {
 						itemIndex,
 					});
 				}
 
-				const apiLink = credentials.apiLink;
-				const secretKey = credentials.secretKey;
+				const webhookUrl = credentials[PARAM_WEBHOOK_URL];
+				const secretKey = credentials[PARAM_SECRET_KEY];
 
 				const options: IHttpRequestOptions = {
 					method: 'POST',
-					url: `${apiLink}`,
+					url: `${webhookUrl}`,
 					headers: {
 						'Content-Type': 'application/json',
 						'X-API-KEY': secretKey as string,
@@ -203,10 +233,10 @@ export class Drwally implements INodeType {
 
 				const response = await this.helpers.httpRequest(options);
 
-				if (!response.status || response.status !== 'queued') {
+				if (!response.status || response.status !== RESPONSE_STATUS_QUEUED) {
 					throw new NodeOperationError(
 						this.getNode(),
-						new Error(`Failed to send message: ${response.status}`),
+						new Error(`${ERROR_FAILED_SEND_MESSAGE}${response.status}`),
 						{
 							itemIndex,
 						},

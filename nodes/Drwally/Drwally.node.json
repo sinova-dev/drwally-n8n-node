@@ -2,7 +2,7 @@
 	"node": "drwally-n8n-node",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Development", "Developer Tools"],
+	"categories": ["Development", "Developer Tools", "Communication"],
 	"resources": {
 		"credentialDocumentation": [
 			{
@@ -11,7 +11,7 @@
 		],
 		"primaryDocumentation": [
 			{
-				"url": "https://api.drwallyai.com/api#/"
+				"url": "https://api.drwallyai.com/api-public/"
 			}
 		]
 	}

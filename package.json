@@ -38,8 +38,8 @@
 		"n8nNodesApiVersion": 1,
 		"strict": true,
 		"credentials": [
-			"dist/credentials/DrWallyPrivateApi.credentials.js",
-			"dist/credentials/DrWallyGroupApi.credentials.js"
+			"dist/credentials/DrWallyPrivateMessageApi.credentials.js",
+			"dist/credentials/DrWallyGroupMessageApi.credentials.js"
 		],
 		"nodes": [
 			"dist/nodes/Drwally/Drwally.node.js"

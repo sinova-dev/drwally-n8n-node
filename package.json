@@ -54,7 +54,9 @@
 		"prettier": "3.6.2",
 		"prettier-plugin-tailwindcss": "^0.7.2",
 		"release-it": "^19.0.4",
-		"typescript": "5.9.2",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
 		"n8n-workflow": "*"
 	},
 	"lint-staged": {

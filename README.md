@@ -28,10 +28,10 @@ For sending messages using DrWally node, you need to have account on [DrWally we
 1. Create account.
 2. Log in.
 3. In sidebar select WhatsApp for Business
-4. Connect your whatsapp account to the app.
+4. Connect your whatsapp account to the app
 5. Select Webhooks for WhatsApp for Business on sidebar
 6. Generate webhook for selected phone number
-7. Use Webhook URL and Secret Key, to create credentials in n8n.
+7. Use Webhook URL and Secret Key, to create credentials in n8n
 
 ## Compatibility
 

@@ -1,6 +1,6 @@
 {
 	"name": "@drwally/n8n-nodes-integration",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Integration node for Drwally",
 	"license": "MIT",
 	"homepage": "https://github.com/sinova-dev/drwally-n8n-node.git",

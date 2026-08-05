@@ -1,6 +1,6 @@
 {
 	"name": "@drwally/n8n-nodes-integration",
-	"version": "1.0.6",
+	"version": "1.1.0",
 	"description": "Integration node for Drwally",
 	"license": "MIT",
 	"homepage": "https://github.com/sinova-dev/drwally-n8n-node.git",
@@ -18,6 +18,9 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"engines": {
+		"npm": "11.6.2"
+	},
 	"scripts": {
 		"build": "n8n-node build",
 		"build:watch": "tsc --watch",
@@ -28,7 +31,6 @@
 		"prepublishOnly": "n8n-node prerelease",
 		"format": "prettier . --write --log-level=warn",
 		"format:check": "prettier . --check --log-level=warn",
-		"prepare": "husky",
 		"pre-commit": "npm install && git add package-lock.json && npx lint-staged --allow-empty && tsc --noEmit"
 	},
 	"files": [
@@ -39,7 +41,8 @@
 		"strict": true,
 		"credentials": [
 			"dist/credentials/DrWallyPrivateMessageApi.credentials.js",
-			"dist/credentials/DrWallyGroupMessageApi.credentials.js"
+			"dist/credentials/DrWallyGroupMessageApi.credentials.js",
+			"dist/credentials/DrWallyTemplateMessageApi.credentials.js"
 		],
 		"nodes": [
 			"dist/nodes/Drwally/Drwally.node.js"
@@ -48,13 +51,13 @@
 	"devDependencies": {
 		"@n8n/node-cli": "*",
 		"@sinova-development/repos-configs": "^0.0.2",
-		"eslint": "9.32.0",
+		"eslint": "^9.39.4",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.7",
-		"prettier": "3.6.2",
+		"prettier": "^3.8.3",
 		"prettier-plugin-tailwindcss": "^0.7.2",
-		"release-it": "^19.0.4",
-		"typescript": "5.9.2"
+		"release-it": "^21.0.1",
+		"typescript": "^5.9.3"
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"

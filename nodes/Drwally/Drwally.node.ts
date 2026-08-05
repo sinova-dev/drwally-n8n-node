@@ -294,8 +294,8 @@ export class Drwally implements INodeType {
 				name: 'recipient',
 				type: 'string',
 				default: '',
-				placeholder: 'Enter recipient phone number / group name',
-				description: 'The recipient phone number',
+				placeholder: 'e.g. +15551234567',
+				description: 'The recipient phone number, or the group name for group messages',
 				required: true,
 				displayOptions: {
 					show: {
@@ -309,7 +309,7 @@ export class Drwally implements INodeType {
 				name: 'message',
 				type: 'string',
 				default: '',
-				placeholder: 'Enter message',
+				placeholder: 'e.g. Hello, thanks for reaching out!',
 				description: 'The message to send',
 				required: true,
 				displayOptions: {
@@ -400,14 +400,14 @@ export class Drwally implements INodeType {
 								name: 'name',
 								type: 'string',
 								default: '',
-								placeholder: 'Enter variable name',
+								placeholder: 'e.g. customerName',
 							},
 							{
 								displayName: 'Value',
 								name: 'value',
 								type: 'string',
 								default: '',
-								placeholder: 'Enter variable value',
+								placeholder: 'e.g. John Smith',
 							},
 						],
 					},

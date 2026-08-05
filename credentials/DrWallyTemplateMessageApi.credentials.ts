@@ -32,7 +32,7 @@ export class DrWallyTemplateMessageApi implements ICredentialType {
 			required: true,
 		},
 		{
-			displayName: 'Secret key',
+			displayName: 'Secret Key',
 			name: 'secretKey',
 			type: 'string',
 			default: '',

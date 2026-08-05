@@ -1,4 +1,10 @@
-import type { ICredentialTestRequest, ICredentialType, INodeProperties, Icon } from 'n8n-workflow';
+import type {
+	IAuthenticateGeneric,
+	ICredentialTestRequest,
+	ICredentialType,
+	INodeProperties,
+	Icon,
+} from 'n8n-workflow';
 import {
 	CREDENTIAL_DRWALLY_PRIVATE_MESSAGE_API,
 	API_DOCUMENTATION_URL,
@@ -35,14 +41,20 @@ export class DrWallyPrivateMessageApi implements ICredentialType {
 		},
 	];
 
+	authenticate: IAuthenticateGeneric = {
+		type: 'generic',
+		properties: {
+			headers: {
+				'X-API-KEY': '={{$credentials.secretKey}}',
+			},
+		},
+	};
+
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '={{$credentials?.webhookUrl}}' + API_HEALTH_PATH,
+			baseURL: '={{$credentials.webhookUrl}}',
+			url: API_HEALTH_PATH,
 			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-API-KEY': '={{$credentials?.secretKey}}',
-			},
 		},
 	};
 }

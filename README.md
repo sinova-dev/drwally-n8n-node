@@ -20,6 +20,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 1. Send private message - send message to a single user
 2. Send group message - send message to a group
+3. Send template message - send an approved WhatsApp template message, optionally with context variables
 
 ## Credentials
 
@@ -33,9 +34,11 @@ For sending messages using DrWally node, you need to have account on [DrWally we
 6. Generate webhook for selected phone number
 7. Use Webhook URL and Secret Key, to create credentials in n8n
 
+Each operation uses its own credential type (Private Message, Group Message, and Template Message), so you'll need to set up the corresponding credential for each operation you want to use.
+
 ## Compatibility
 
-Minimum n8n version - 2.1.5
+Minimum n8n version - 2.33.3
 
 ## Resources
 

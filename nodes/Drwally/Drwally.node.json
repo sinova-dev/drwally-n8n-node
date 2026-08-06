@@ -1,8 +1,8 @@
 {
-	"node": "drwally-n8n-node",
+	"node": "@drwally/n8n-nodes-integration.drwally",
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
-	"categories": ["Development", "Developer Tools", "Communication"],
+	"categories": ["Development", "Communication"],
 	"resources": {
 		"credentialDocumentation": [
 			{

@@ -65,11 +65,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Publish
+      - name: Release
         # Publishes to npm with a provenance attestation (requires id-token: write above).
-        # Lint and build run automatically via prepublishOnly (n8n-node prerelease).
+        # `n8n-node release` detects it's running in CI (GITHUB_ACTIONS env var) and
+        # runs lint, build, then `npm publish` with RELEASE_MODE + provenance set
+        # internally. Calling `npm publish` directly here would fail: the package's
+        # prepublishOnly hook (n8n-node prerelease) blocks publishing outside of
+        # `npm run release`.
         run: |
           [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          npm publish --provenance --access public
+          npm run release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
